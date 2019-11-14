@@ -30,4 +30,33 @@ bigrquery::insert_upload_job(project="ikea-1611" ,
                              table = "tmp",
               	             iris %>% select(Species))
 
+#### dataset
+delete_dataset(
+  project = project,
+  dataset = str_glue("{client}_business_individual_m"),
+  deleteContents = T
+)
+
+bq_dataset_create(str_glue("{project}.bq_{client}_nes_individual_m_pega"))
+
+#### list all tables
+section_tables <- list_tables(project = project, 
+                              dataset = str_glue("bq_{client}_nes_section_m_penny"))
+
+#### copy table
+bq_table_copy(str_glue("{project}.bq_{client}_nes_section_m_penny.{section_tables[i]}"),
+              dest = str_glue("{project}.bq_{client}_nes_section_m_pega.{section_tables[i]}"))
+
+#### 挑出dataset 裡的 data table
+section_tables <- list_tables(project = project, 
+                              dataset = str_glue("{client}_individual_q")) %>% 
+  str_subset("overall_comp_type")
+
+ds <- bq_dataset(project = project, 
+                 dataset = str_glue("{client}_individual_q"))
+for(i in 1:4){
+  bq_mtcars <- bq_table(ds, section_tables[i])
+  bq_table_delete(bq_mtcars)
+}
+
 

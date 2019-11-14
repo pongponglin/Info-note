@@ -230,7 +230,20 @@ map <- get_map(location = c(lon = 120.233937, lat = 22.993013),
                zoom = 10, language = "zh-TW", maptype = "roadmap")
 ggmap(map)
 
+###### Google  ######
+library(googlesheets)
+gs_auth(token = "~/data_cleansing_process/ysbpan.rds")
+counting <- gs_title("Existing member purchase(for 2019 yearly report)") 
+df <- gs_read(counting,  ws = "ExistingforR") ## ws: sheet 名稱
 
+gs_new(title = "IB company", input = temp)
+
+###### read xlsx 檔 ######
+library(readxl)
+library(xlsx)
+tables <- read_excel("~/aaa.xlsx", sheet = 1) 
+# mtemp <- read.xlsx(file=paste0("~/MAR/",mar[j]),sheetIndex=i,encoding = "UTF-8") 
+## 會用到Java的東西，然後會失敗
 
 ###### Rmarkdown ######
 
