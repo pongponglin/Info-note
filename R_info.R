@@ -159,6 +159,15 @@ scale_colour_brewer(palette="Set1")
 # 要x軸（類別）按照想要的順序
 sp$city_o = factor(sp$city_o, levels = popu$縣市)
 
+# lm 配飾圖
+ggplot(data = train, aes(x = year, y = active_rate, label = year))+
+  geom_point()+
+  geom_smooth(method = 'lm', se = F)+
+  scale_x_continuous(breaks = 2013:2019)+
+  scale_y_continuous(breaks = 513885)+
+  geom_label_repel(data = filter(data_tmp, year == 2019)) + 
+  labs(title = "2019 IFB Active Member Estimation", x = "Year", y = "Num. of Active Member")
+
 
 ###### Plotly ######
 library(ployly)

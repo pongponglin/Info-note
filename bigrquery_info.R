@@ -6,11 +6,11 @@ bigrquery::set_service_token('/home/shiny/auth-migo-shiny-bigquery-ro.json')
 
 ##### Query command
 query_exec(" select ... from 
-	", project = "project_id", max_pages = Inf, use_lagacy_sql = F) -> temp
+	", project = "project_id", max_pages = Inf, use_legacy_sql = F) -> temp
 
 query <- "select  ..."
 names <- query_exec(query = query,
-	project = "project_id", max_pages = Inf, use_lagacy_sql = F)
+	project = "project_id", max_pages = Inf, use_legacy_sql = F)
 
 
 ##### Query and save table
