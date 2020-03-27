@@ -7,6 +7,9 @@ rm(list=ls())
 ## attached packages
 (.packages()) 
 
+##### str_glue #####
+str_glue("{paste(text_col, collapse = ', \" \" , ')}")
+
 ##### datatable #####
 library(data.table)
 data %>% datatable(extensions = 'Buttons', 
