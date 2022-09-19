@@ -38,7 +38,7 @@ highchart() %>%
 highchart() %>%
   hc_title(text="This is <i>斜體</i> and <b>粗體</b>", align = "left",
            style = list(color = "#99000d")) # 給標題
-hc_xAxis(categories= citytemp$month) # Ｘ軸變數
+hc_xAxis(categories= citytemp$month, type = 'datetime') # Ｘ軸變數
 hc_yAxis(title=list(text=" "), min=, max= ) # Ｙ軸變數# 調y軸上下界
 hc_add_series(citytemp$tokyo, name="Tokyo", color=col[1]) # 加資料集
 hc_add_series(citytemp$london, name="London", type="column", color=col[2])  
@@ -244,10 +244,12 @@ ggmap(map)
 
 ###### Google  ######
 library(googlesheets)
+gs_auth()
 gs_auth(token = "~/data_cleansing_process/ysbpan.rds")
 counting <- gs_title("Existing member purchase(for 2019 yearly report)") 
 df <- gs_read(counting,  ws = "ExistingforR") ## ws: sheet 名稱
 
+gs_user()
 gs_new(title = "IB company", input = temp)
 
 ###### read xlsx 檔 ######
