@@ -27,60 +27,6 @@ data %>% datatable(extensions = 'Buttons',
 #99000d 深紅
 #2171b5 藍
 
-#### highcharter ####
-
-library(highcharter)
-
-highchart() %>%
-  hc_xAxis(categories= ) %>% 
-  hc_add_series( , name="")
-
-highchart() %>%
-  hc_title(text="This is <i>斜體</i> and <b>粗體</b>", align = "left",
-           style = list(color = "#99000d")) # 給標題
-hc_xAxis(categories= citytemp$month, type = 'datetime') # Ｘ軸變數
-hc_yAxis(title=list(text=" "), min=, max= ) # Ｙ軸變數# 調y軸上下界
-hc_add_series(citytemp$tokyo, name="Tokyo", color=col[1]) # 加資料集
-hc_add_series(citytemp$london, name="London", type="column", color=col[2])  
-hc_add_series(citytemp$new_york, name="New York", color=col[3]) 
-hc_subtitle(text = "Citytemp",    # 給副標題
-            align = "right", 
-            style=list( color = "#2b908f", fontWeight = "bold"))
-hc_tooltip(headerFormat = "<b>{series.name} cylinders</b><br>",
-           pointFormat = "{point.x} (lb/1000), {point.y} (miles/gallon)")   
-          #定義 當滑標指到時顯示的方式
-hc_add_theme(hc_theme_google())
-
-highchart() %>% 
-  hc_add_series_scatter(cars$speed, cars$dist)  # scatter plot
-
-# 圖顯示中文
-par(family=“STXihei”)
-
-### 另一種資料格式
-hchart( "line", hcaes(x = as.factor(hosp_type), 
-                      y = type_rate, group = dis_type), 
-        color=c("")) 
-
-### abline
-hc_xAxis(type = 'datetime',
-         plotLines = list(
-           list(
-             label = list(text = "This is a plotLine"),
-             color = "#FF0000",
-             width = 5,
-             value = as.Date('1990-01-01', tz = 'UTC')
-           )
-         ),
-         plotBands = list(
-           list(
-             label = list(text = "This is a plotBand"),
-             color = "rgba(100, 0, 0, 0.1)",
-             from = as.Date('1995-01-01', tz = 'UTC'),
-             to = as.Date('1996-01-01', tz = 'UTC')
-           )
-         )
-)
 
 ###### ggplot ######
 library(ggplot2)
